@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gw_service
+  cloud:
+    gateway:
+      routes:
+        - id: course
+          uri:
+            http://localhost:8001/
+          predicates:
+            - Path=/course/**
+        - id: mark
+          uri:
+            http://localhost:8761/
+          predicates:
+            - Path=/mark/**
+server:
+  port: 8000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka
